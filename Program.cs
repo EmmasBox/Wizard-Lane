@@ -26,6 +26,8 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 addEvent("Wizard Lane", "undefined", $"You arrive at Wizard Lane. In front of you stands a little wooden sign that says 'Welcome to Wizard Lane - Population: 87'. A man comes up to you and says 'welcome {user}!'", choiceList1, events);
 addEvent("The Guild of Witches", "undefined", $"You arrive at the The Guild of Witches. 'welcome {user}!'", choiceList2, events);
+
+//this bit of code is used to add new events to the game
 static void addEvent(string location, string graphicPath, string displayText, List<string> choices, List<List<string>> events)
 {
     List<string> newEvent = new List<string>();
@@ -50,11 +52,16 @@ void main()
             {
                 if (events[i][0] == nextLocation)
                 {
+                    //this section of code runs once the user has chosen an option
+
+                    //this code shows text art if there is any to display
                     if (events[i][1] != "") Console.WriteLine(events[i][1]);
+                    //prints the current event's text
                     Console.WriteLine(events[i][2]);
                     currentLocation = nextLocation;
                     listedChoices = false;
                     currentChoices.Clear();
+                    //sets the code to go back to "choosing" mode so the user can move forward from the current event
                     choosing = true;
                 }
             }
@@ -67,8 +74,11 @@ void main()
                 {
                     if (events[i][0] == currentLocation)
                     {
+                        //if there's no options in an option the game will assume that you have reached an ending slide
+                        //this if statement checks if there's options to run
                         if (events[i].Count > 3)
                         {
+                            //this bit of code lists the user's options for continuing on from the current event
                             Console.WriteLine();
                             Console.WriteLine("What do you do next?");
                             int locationNum = 1;
@@ -87,6 +97,7 @@ void main()
                         }
                         else
                         {
+                            //this code lets the user start over if there's no options to go forward at this event
                             listedChoices = true;
                             currentLocation = "";
                             Console.WriteLine("You have reached an ending slide! Press any key to start over!");
@@ -132,6 +143,7 @@ void main()
     {
         if (!introInitialized)
         {
+            //this code shows the game's intro and ask the user's gender and name.
             Console.WriteLine(intro);
             Console.WriteLine();
             Console.WriteLine("Press any key to start the adeventure!");
@@ -155,6 +167,7 @@ void main()
     }
 }
 
+//main loop
 while (true)
 {
     main();
