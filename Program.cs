@@ -115,6 +115,7 @@ void main()
             }
             else
             {
+                //this section allows the user to pick which event they want to choose next
                 if (currentChoices.Count() > 0)
                 {
                     Console.Write("Type the number of the action you want to perform: ");
